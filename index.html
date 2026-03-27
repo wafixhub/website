@@ -1,0 +1,2340 @@
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaFIX HUB - المنقذ الوحيد لأدوات التسويق</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* المتغيرات والألوان */
+        :root {
+            --bg-dark: #070b14;
+            --bg-card: rgba(21, 26, 40, 0.7);
+            --primary: #00e676;
+            --primary-glow: rgba(0, 230, 118, 0.5);
+            --secondary: #00b4d8;
+            --secondary-glow: rgba(0, 180, 216, 0.4);
+            --text-main: #f8f9fa;
+            --text-muted: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* إعدادات عامة */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* تأثيرات التمرير الجمالية (Scrollbar) */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 5px;
+            border: 2px solid var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* حركات الانبثاق (Animations) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 15px var(--primary-glow);
+            }
+
+            50% {
+                box-shadow: 0 0 40px var(--primary-glow);
+            }
+
+            100% {
+                box-shadow: 0 0 15px var(--primary-glow);
+            }
+        }
+
+        /* الهيدر (Header) المحدث */
+        header {
+            background: rgba(7, 11, 20, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-name {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--secondary);
+            /* اللون الأزرق */
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .logo-name span {
+            color: var(--primary);
+            /* اللون الأخضر الفاتح/الفلورسنت */
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        /* لضمان التنسيق في الهواتف */
+        @media (max-width: 768px) {
+            .logo-name {
+                font-size: 1.2rem;
+            }
+
+            .logo img {
+                max-height: 35px;
+            }
+        }
+
+        .logo img {
+            max-height: 45px;
+            filter: drop-shadow(0 0 8px var(--primary-glow));
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        /* قائمة التنقل الاحترافية */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 1em;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* زر القائمة للهواتف (Hamburger) */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* الأزرار */
+        .btn-primary {
+            background: linear-gradient(45deg, #00c853, var(--primary));
+            color: #000;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 800;
+            transition: all 0.3s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--primary-glow);
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--primary-glow);
+            color: #000;
+        }
+
+        .header-btn {
+            margin-right: 20px;
+        }
+
+        /* القسم الرئيسي (Hero) */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 160px 5% 100px;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 65%);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 55%;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            background: rgba(0, 230, 118, 0.1);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.95em;
+            font-weight: bold;
+            margin-bottom: 25px;
+            display: inline-block;
+            border: 1px solid var(--primary-glow);
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: 3.8em;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--primary-glow);
+            z-index: -1;
+            border-radius: 5px;
+        }
+
+        .hero p {
+            font-size: 1.25em;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.9;
+        }
+
+        .hero-img {
+            flex: 1;
+            max-width: 40%;
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* العناوين المشتركة */
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.8em;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .section-title span {
+            background: linear-gradient(to left, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+        }
+
+        /* قسم القصة / المشكلة (البيع العاطفي) */
+        .the-story {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #0a1120 100%);
+            position: relative;
+        }
+
+        .story-container {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            background: rgba(21, 26, 40, 0.6);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .story-text {
+            flex: 1;
+        }
+
+        .story-text h2 {
+            font-size: 2.4em;
+            margin-bottom: 25px;
+            color: #ff4757;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .story-text p {
+            font-size: 1.15em;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+
+        .story-text .highlight {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.3em;
+            display: block;
+            margin: 30px 0 15px;
+            border-right: 4px solid var(--primary);
+            padding-right: 15px;
+            background: linear-gradient(90deg, transparent, rgba(0, 230, 118, 0.05));
+        }
+
+        .story-img {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .story-img img {
+            max-width: 100%;
+            border-radius: 20px;
+            filter: grayscale(40%);
+            transition: var(--transition-smooth);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .story-img:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03) translateY(-10px);
+            box-shadow: 0 25px 45px rgba(255, 71, 87, 0.2);
+        }
+
+        /* قسم البرامج المدعومة */
+        .supported-tools {
+            padding: 100px 5%;
+            text-align: center;
+            background: var(--bg-dark);
+        }
+
+        /* تصميم شبكة الأدوات الجديد */
+        .tools-grid-new {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            padding: 0 2%;
+        }
+
+        /* 1. البطاقة: مربعة تماماً في كل الشاشات */
+        .tool-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            /* مهم جداً لمنع خروج الصورة */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1 / 1;
+            /* هذا السطر يجبر البطاقة أن تكون مربعة 100% */
+            min-height: unset;
+            /* إلغاء الطول المستطيل القديم */
+            padding: 0;
+            /* إزالة أي مسافات داخلية تعيق الصورة */
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        /* حاوية الوجه الأمامي (الشعار) */
+        .card-front {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.4s ease 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 2. الصورة: تملأ البطاقة المربعة بالكامل دون حواف فارغة */
+        .card-hover-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* تأخذ حجم المربع بالكامل */
+            object-fit: cover;
+            /* السر هنا: يملأ الفراغ بالكامل ولا يترك أي حواف */
+            object-position: center;
+            /* يعرض منتصف الصورة لتبدو متناسقة */
+            opacity: 0;
+            transition: opacity 0.4s ease 0.3s, transform 0.6s ease;
+            z-index: 1;
+            transform: scale(7.1);
+        }
+
+        .tool-card:hover .card-hover-img {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* تعديل: البطاقة تصعد للأعلى فقط وتبقى مستقيمة تماماً */
+        .tool-card:hover {
+            transform: translateY(-15px);
+            /* صعود للأعلى فقط بدون إمالة */
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0, 230, 118, 0.15);
+        }
+
+
+
+        .tool-card:hover .card-front {
+            opacity: 0;
+            /* إخفاء الشعار والاسم بعد 300ms */
+        }
+
+        .card-front img {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.6));
+            transition: transform 0.4s ease;
+        }
+
+        /* الإمالة والتكبير هنا فقط! (على الشعار الداخلي وليس البطاقة) */
+        .tool-card:hover .card-front img {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .card-front span {
+            font-size: 1.2em;
+            font-weight: 800;
+            color: var(--text-main);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+
+
+        .tool-card:hover .card-hover-img {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .card-front img {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.6));
+            transition: transform 0.4s ease;
+        }
+
+        .tool-card:hover .card-front img {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .card-front span {
+            font-size: 1.2em;
+            font-weight: 800;
+            color: var(--text-main);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+
+        /* قسم الفوائد (لماذا نحن) */
+        .benefits {
+            padding: 100px 5%;
+            background: #0a1120;
+            position: relative;
+        }
+
+        .benefits::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(0, 180, 216, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefit-card {
+            background: rgba(21, 26, 40, 0.8);
+            padding: 50px 40px;
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            text-align: right;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transition: height 0.4s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-12px);
+            background: rgba(30, 38, 56, 0.95);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-card:hover::before {
+            height: 100%;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefit-card p {
+            color: var(--text-muted);
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        /* عرض الباقة الشاملة (الضربة القاضية) */
+        .bundle-offer {
+            margin: 100px 5%;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1), rgba(0, 230, 118, 0.05));
+            border-radius: 35px;
+            padding: 80px 60px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .bundle-offer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+            animation: spin 30s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .bundle-text {
+            flex: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bundle-text h2 {
+            font-size: 3.2em;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .bundle-text h2 span {
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .bundle-text ul {
+            list-style: none;
+            margin-bottom: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .bundle-text ul li {
+            font-size: 1.2em;
+            margin-bottom: 18px;
+            color: #e2e8f0;
+            /* السر الجذري هنا: إلغاء الـ flex واستخدام block ليبقى النص متصلاً */
+            display: block;
+            position: relative;
+            padding-right: 35px;
+            /* ترك مساحة لعلامة الصح على اليمين */
+            line-height: 1.8;
+            text-align: right;
+        }
+
+        .bundle-text ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        .bundle-text ul li::before {
+            content: '✔';
+            position: absolute;
+            right: 0;
+            top: 2px;
+            /* ضبط مستوى علامة الصح مع السطر الأول */
+            color: var(--primary);
+            font-size: 1.2em;
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .bundle-img {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bundle-img img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            animation: pulseGlow 4s infinite;
+            border: 2px solid rgba(0, 230, 118, 0.2);
+        }
+
+        /* سجل التحديثات */
+        .updates-section {
+            padding: 100px 5%;
+            background: var(--bg-dark);
+        }
+
+        .changelog-box {
+            background: #04070d;
+            padding: 50px;
+            border-radius: 25px;
+            max-height: 600px;
+            overflow-y: auto;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9);
+            position: relative;
+        }
+
+        /* Scrollbar خاص بسجل التحديثات */
+        .changelog-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .changelog-box::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .changelog-box::-webkit-scrollbar-thumb {
+            background: rgba(0, 180, 216, 0.5);
+            border-radius: 10px;
+        }
+
+        .update-item {
+            margin-bottom: 35px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .update-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .update-version {
+            font-family: monospace;
+            font-size: 1.4em;
+            color: var(--secondary);
+            font-weight: 800;
+            direction: ltr;
+            display: inline-block;
+            background: rgba(0, 180, 216, 0.1);
+            padding: 5px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+        }
+
+        .update-date {
+            color: #64748b;
+            font-size: 1em;
+            margin-right: 20px;
+            font-weight: 500;
+        }
+
+        .update-list {
+            margin-top: 20px;
+            padding-right: 25px;
+            color: #cbd5e1;
+        }
+
+        .update-list li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+            font-size: 1.1em;
+        }
+
+        /* الأسعار */
+        .pricing {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, #0a1120 0%, var(--bg-dark) 100%);
+        }
+
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: rgba(21, 26, 40, 0.5);
+            padding: 50px 30px;
+            border-radius: 30px;
+            width: calc(25% - 25px);
+            min-width: 280px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border-color: var(--secondary);
+            box-shadow: 0 20px 40px rgba(0, 180, 216, 0.15);
+            background: rgba(21, 26, 40, 0.8);
+        }
+
+        .card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .card .price {
+            font-size: 3.5em;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+        }
+
+        .card .price span {
+            font-size: 0.3em;
+            color: var(--text-muted);
+            font-weight: normal;
+            text-shadow: none;
+        }
+
+        .card ul {
+            list-style: none;
+            text-align: right;
+            margin-bottom: 40px;
+            flex-grow: 1;
+        }
+
+        .card ul li {
+            padding: 15px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+            font-size: 1.05em;
+            display: flex;
+            align-items: center;
+        }
+
+        .card ul li i {
+            color: var(--primary);
+            margin-left: 10px;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        .card ul li i.cross {
+            color: #ff4757;
+        }
+
+        .card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, rgba(21, 26, 40, 0.95), rgba(0, 230, 118, 0.08));
+            transform: scale(1.08);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 230, 118, 0.1);
+            z-index: 2;
+        }
+
+        .card.featured::after {
+            content: 'الخيار الأذكى';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #00c853, var(--primary));
+            color: #000;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-size: 1em;
+            box-shadow: 0 5px 15px var(--primary-glow);
+        }
+
+        .card.featured:hover {
+            transform: scale(1.08) translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 230, 118, 0.25);
+        }
+
+        /* الفوتر */
+        footer {
+            background: #03050a;
+            padding: 60px 5% 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        footer img {
+            max-width: 250px;
+            margin: 25px auto;
+            filter: grayscale(100%) opacity(0.5);
+            transition: var(--transition-smooth);
+            border-radius: 10px;
+        }
+
+        footer img:hover {
+            filter: grayscale(0) opacity(1);
+            transform: scale(1.05);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* قسم آراء العملاء (لقطات الشاشة) */
+        .screenshots-testimonials {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, var(--bg-dark), #0a1120);
+            text-align: center;
+            position: relative;
+            border-top: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .screenshots-testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.05) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* إضافة مؤشر السحب للكمبيوتر */
+        .swipe-hint {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 25px;
+            border-radius: 30px;
+            color: var(--text-muted);
+            font-size: 1em;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: pulseGlow 3s infinite;
+            position: relative;
+            z-index: 2;
+            user-select: none;
+        }
+
+        .slider-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 10px 60px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            /* فايرفوكس */
+            -ms-overflow-style: none;
+            /* إيدج */
+            position: relative;
+            z-index: 1;
+            /* تفعيل سحب الماوس */
+            cursor: grab;
+            scroll-behavior: auto;
+            /* مهم للسحب المخصص عبر JS */
+        }
+
+        .slider-container:active {
+            cursor: grabbing;
+        }
+
+        .slider-container::-webkit-scrollbar {
+            display: none;
+            /* كروم وسفاري */
+        }
+
+        .screen-card {
+            flex: 0 0 auto;
+            width: 300px;
+            height: 600px;
+            border-radius: 30px;
+            background: #000;
+            border: 4px solid #1e293b;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            scroll-snap-align: center;
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition-smooth);
+            user-select: none;
+            /* يمنع تحديد الصورة أثناء السحب */
+        }
+
+        /* شكل الكاميرا العلوية للهاتف (Notch) */
+        .screen-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 25px;
+            background: #1e293b;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 2;
+        }
+
+        .screen-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--primary);
+            box-shadow: 0 25px 50px rgba(0, 230, 118, 0.2);
+        }
+
+        .screen-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.6s ease;
+            pointer-events: none;
+            /* يمنع السحب الافتراضي للصورة في المتصفح */
+        }
+
+        .screen-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            /* يضع المجموعة كلها في المنتصف */
+            align-items: center;
+            /* تحكم في المسافة من هنا بدقة - جرب 15px أو 10px */
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 20px auto 0;
+            /* التوسيط الخارجي */
+
+            /* هذا هو السر: تحديد عرض أقصى للحاوية يمنع تباعد الصور القبيح */
+            max-width: 400px;
+        }
+
+        .payment-methods img {
+            /* تصغير الارتفاع قليلاً يقلل الفراغ الشفاف حول الصورة */
+            height: 30px;
+            width: auto;
+            opacity: 0.6;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .payment-methods img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.05);
+            /* حركة بسيطة للتفاعل */
+        }
+
+        /* إخفاء صورة الهاتف في شاشات الحاسوب */
+        .mobile-img {
+            display: none;
+        }
+
+
+        /* --- تنسيقات الصناديق العائمة الحرة --- */
+        .floating-bundle {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .floating-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 4 صناديق في كل صف */
+            gap: 20px;
+            align-items: center;
+            justify-items: center;
+            /* إزالة أي خلفية أو إطار لضمان حرية الصور */
+            background: transparent;
+            border: none;
+            padding: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .floating-grid img {
+            width: 100%;
+            max-width: 110px;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease;
+
+            /* الأسطر الجديدة لإزالة أي إطار أو خلفية موروثة من الكود القديم */
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            background: transparent !important;
+        }
+
+        .floating-grid img:hover {
+            transform: scale(1.15) !important;
+            /* تكبير الصندوق عند لمسه */
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        /* إنشاء 3 مسارات طفو عشوائية (مع إمالة خفيفة جداً لتبدو طبيعية) */
+        @keyframes random-float-1 {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+        }
+
+        @keyframes random-float-2 {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(-3deg);
+            }
+        }
+
+        @keyframes random-float-3 {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(-1deg);
+            }
+        }
+
+        /* تطبيق العشوائية: سرعات مختلفة، وتأخيرات مختلفة، وحركات مختلفة لكل صندوق */
+        .floating-grid img:nth-child(1) {
+            animation: random-float-1 4s ease-in-out infinite 0s;
+        }
+
+        .floating-grid img:nth-child(2) {
+            animation: random-float-2 5s ease-in-out infinite 0.5s;
+        }
+
+        .floating-grid img:nth-child(3) {
+            animation: random-float-3 3.5s ease-in-out infinite 1s;
+        }
+
+        .floating-grid img:nth-child(4) {
+            animation: random-float-1 4.8s ease-in-out infinite 1.5s;
+        }
+
+        .floating-grid img:nth-child(5) {
+            animation: random-float-2 4.2s ease-in-out infinite 0.2s;
+        }
+
+        .floating-grid img:nth-child(6) {
+            animation: random-float-3 3.8s ease-in-out infinite 0.8s;
+        }
+
+        .floating-grid img:nth-child(7) {
+            animation: random-float-1 5.2s ease-in-out infinite 1.2s;
+        }
+
+        .floating-grid img:nth-child(8) {
+            animation: random-float-2 4.5s ease-in-out infinite 0.6s;
+        }
+
+        /* أيقونة السعر العائمة - حل مشكلة الحجم الضخم */
+        .price-badge-float {
+            position: absolute;
+            bottom: -0px;
+            right: -0px;
+            /* أقصى اليمين */
+            width: 120px !important;
+            /* إجبار المتصفح على هذا الحجم الصغير */
+            max-width: 70px !important;
+            height: auto !important;
+            z-index: 10;
+            animation: random-float-2 4s ease-in-out infinite alternate;
+            /* حركة طفو خاصة بها */
+            filter: drop-shadow(0 15px 30px rgba(255, 71, 87, 0.5));
+        }
+
+
+
+
+
+        @keyframes float-organic {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* --- تنسيق قسم التواصل الاجتماعي (أيقونات الإنترنت) --- */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            font-size: 25px;
+            /* حجم الأيقونة */
+            color: #ffffff;
+            /* اللون الافتراضي أبيض */
+            opacity: 0.6;
+            /* باهت قليلاً */
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* ألوان الهوفر المخصصة لكل منصة */
+        .social-icons a.whatsapp:hover {
+            color: #25D366;
+            /* لون واتساب الرسمي */
+            opacity: 1;
+            transform: scale(1.15) translateY(-3px);
+        }
+
+        .social-icons a.facebook:hover {
+            color: #1877F2;
+            /* لون فيسبوك الرسمي */
+            opacity: 1;
+            transform: scale(1.15) translateY(-3px);
+        }
+
+        .social-icons a.youtube:hover {
+            color: #FF0000;
+            /* لون يوتيوب الرسمي */
+            opacity: 1;
+            transform: scale(1.15) translateY(-3px);
+        }
+
+        /* التجاوب مع الشاشات (Responsive) */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.2em;
+            }
+
+            .hero-content {
+                max-width: 50%;
+            }
+
+            .hero-img {
+                max-width: 45%;
+            }
+
+            .card.featured {
+                transform: scale(1.05);
+            }
+
+
+        }
+
+        @media (max-width: 1024px) {
+
+            .hero,
+            .story-container,
+            .bundle-offer {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-content,
+            .hero-img,
+            .story-text,
+            .story-img,
+            .bundle-text,
+            .bundle-img {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .story-text .highlight {
+                border-right: none;
+                border-bottom: 2px solid var(--primary);
+                padding-right: 0;
+                padding-bottom: 10px;
+                display: inline-block;
+            }
+
+            .hero-img,
+            .story-img img,
+            .bundle-img img {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .bundle-offer {
+                padding: 50px 30px;
+            }
+
+            .bundle-text ul li {
+                justify-content: center;
+            }
+
+            .card {
+                width: calc(50% - 15px);
+            }
+
+            .card.featured {
+                transform: scale(1);
+                z-index: 1;
+            }
+
+            .card.featured:hover {
+                transform: translateY(-15px);
+            }
+
+            /* إخفاء الروابط وعرض زر القائمة */
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: rgba(7, 11, 20, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 20px 0;
+                border-bottom: 1px solid var(--glass-border);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                margin: 10px 0;
+                font-size: 1.2em;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .header-btn {
+                display: none;
+                /* إخفاء الزر العلوي في الهاتف لتوفير المساحة */
+            }
+
+            header {
+                padding: 15px 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 130px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .hero-img,
+            .story-img img,
+            .bundle-img img {
+                width: 95%;
+            }
+
+            .section-title {
+                font-size: 2.2em;
+            }
+
+            .section-desc {
+                font-size: 1.05em;
+                padding: 0 10px;
+            }
+
+            .story-container {
+                padding: 30px 20px;
+            }
+
+            .story-text h2 {
+                font-size: 1.8em;
+            }
+
+            .tools-grid-new {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            /* التعديل الجذري هنا للبطاقة */
+            .tool-card {
+                border-radius: 20px;
+                padding: 0;
+                /* إزالة الـ padding لكي تملأ الصورة البطاقة بالكامل */
+            }
+
+            /* تم حذف الكود الذي كان يقص الصورة، ونعتمد فقط على هذا لتصغير الشعار */
+            .card-front img {
+                height: 55px;
+            }
+
+            .card-front span {
+                font-size: 1.05em;
+            }
+
+            /* تأكيد إضافي للهاتف لضمان ملء الصورة للبطاقة */
+            .card-hover-img {
+                height: 100% !important;
+                width: 100% !important;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .bundle-offer {
+                border-radius: 25px;
+                padding: 40px 20px;
+            }
+
+            .bundle-text h2 {
+                font-size: 2.2em;
+            }
+
+            .bundle-text ul {
+                padding: 20px;
+                /* تقليل المساحة الداخلية ليأخذ النص راحته */
+            }
+
+            .bundle-text ul li {
+                font-size: 1.05em;
+                padding-right: 25px;
+                /* تقليل المسافة قليلاً لتناسب الهاتف */
+            }
+
+            .changelog-box {
+                padding: 25px;
+                max-height: 450px;
+            }
+
+            .update-version {
+                font-size: 1.1em;
+            }
+
+            .screen-card {
+                width: 260px;
+                height: 520px;
+            }
+
+            .slider-container {
+                gap: 10px;
+                padding-bottom: 40px;
+            }
+
+            .payment-methods {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 0px;
+                flex-wrap: wrap;
+                margin-top: 15px;
+            }
+
+            .payment-methods img {
+                height: 25px;
+                width: auto;
+                opacity: 0.6;
+                filter: grayscale(100%);
+                transition: all 0.3s ease;
+            }
+
+            .payment-methods img:hover {
+                opacity: 1;
+                filter: grayscale(0%);
+            }
+
+            /* إخفاء صورة الحاسوب الجانبية في الهاتف */
+            .desktop-img {
+                display: none !important;
+            }
+
+            /* إظهار الصورة تحت العنوان في الهاتف وتنسيقها */
+            .mobile-img {
+                display: block !important;
+                margin: 30px auto;
+                text-align: center;
+            }
+
+            .mobile-img img {
+                width: 95%;
+                max-width: 400px;
+                border-radius: 20px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+                animation: pulseGlow 4s infinite;
+                border: 2px solid rgba(0, 230, 118, 0.2);
+            }
+
+            .floating-grid {
+                gap: 12px;
+                padding: 10px 0;
+            }
+
+            .price-badge-float {
+                width: 90px !important;
+                /* تصغير السعر في الهاتف بقوة */
+                max-width: 50px !important;
+                bottom: -20px;
+                right: -10px;
+            }
+
+            /* --- تأثيرات التلوين التلقائي للهاتف فقط --- */
+
+            /* 1. تلوين طرق الدفع بعد ثانيتين من ظهور الفوتر */
+            @keyframes colorizePayment {
+                100% {
+                    filter: grayscale(0%);
+                    opacity: 1;
+                }
+            }
+
+            footer.active .payment-methods img {
+                animation: colorizePayment 0.5s ease forwards;
+                animation-delay: 2s;
+            }
+
+            /* 2. تلوين أيقونات التواصل الاجتماعي والقفز بعد 4 ثواني من ظهور الفوتر */
+            @keyframes colorizeWhatsApp {
+                100% {
+                    color: #25D366;
+                    opacity: 1;
+                    filter: grayscale(0%);
+                    transform: scale(1.15) translateY(-3px);
+                }
+            }
+
+            @keyframes colorizeFacebook {
+                100% {
+                    color: #1877F2;
+                    opacity: 1;
+                    filter: grayscale(0%);
+                    transform: scale(1.15) translateY(-3px);
+                }
+            }
+
+            @keyframes colorizeYouTube {
+                100% {
+                    color: #FF0000;
+                    opacity: 1;
+                    filter: grayscale(0%);
+                    transform: scale(1.15) translateY(-3px);
+                }
+            }
+
+            footer.active .social-icons a.whatsapp {
+                animation: colorizeWhatsApp 0.5s ease forwards;
+                animation-delay: 4s;
+            }
+
+            footer.active .social-icons a.facebook {
+                animation: colorizeFacebook 0.5s ease forwards;
+                animation-delay: 4s;
+            }
+
+            footer.active .social-icons a.youtube {
+                animation: colorizeYouTube 0.5s ease forwards;
+                animation-delay: 4s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="#" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                <img src="img/logo.png" alt="WaFIX HUB Logo">
+                <span class="logo-name">WaFIX <span>HUB</span></span>
+            </a>
+        </div>
+
+        <button class="menu-toggle" aria-label="Toggle Menu" id="mobile-menu-btn">☰</button>
+
+        <div class="nav-links" id="nav-menu">
+            <a href="#story">المشكلة والحل</a>
+            <a href="#tools">الأدوات</a>
+            <a href="#benefits">الفوائد</a>
+            <a href="#bundle">الباقة الشاملة</a>
+            <a href="#updates">سجل التحديثات</a>
+            <a href="#reviews">آراء العملاء</a>
+            <a href="#pricing">الأسعار</a>
+        </div>
+
+        <a href="#pricing" class="btn-primary header-btn">احصل على الحل الآن</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content reveal active">
+            <div class="hero-badge">أداة الإصلاح الأولى عالمياً</div>
+            <h1>لا تتخلص من برامجك المفضلة! <span>أعدها للحياة</span> الآن.</h1>
+            <p>هل توقفت أدوات التسويق الخاصة بك فجأة؟ لا تقلق، <strong>WaFIX HUB</strong> هو النظام المستقل الوحيد الذي
+                يعيد شريان الحياة للنسخ الرسمية ويمنحك تحديثات مستمرة لاستقرار أعمالك.</p>
+            <a href="#pricing" class="btn-primary" style="font-size: 1.2em; padding: 15px 40px;">تصفح الباقات وانقذ
+                أعمالك</a>
+        </div>
+        <div class="hero-img reveal active">
+            <img src="img/1.png" alt="واجهة نظام WaFIX">
+        </div>
+    </section>
+
+    <section class="the-story" id="story">
+        <h2 class="section-title reveal active">لماذا <span>توقفت</span> برامجك عن العمل؟</h2>
+        <div class="story-container reveal active">
+            <div class="story-text">
+                <h2>الحقيقة الصادمة في السوق ⚠️</h2>
+                <p>العديد من المسوقين استيقظوا ليجدوا أدواتهم التي يعتمدون عليها قد توقفت تماماً (مثل فشل إرسال الصور
+                    والوسائط، توقف إرسال
+                    الرسائل، أو الفشل في استخراج الأرقام الصحيحة من الدردشات وغيرها). السبب بسيط ولكنه كارثي:</p>
+                <p><strong>المطورون الرسميون تخلوا عن دعم هذه التطبيقات وأوقفوا التحديثات!</strong></p>
+                <p>مما جعل البرامج غير قادرة على التوافق مع التحديثات المستمرة لمنصات التواصل ومحركات البحث. وهنا لجأ
+                    البعض للنسخ "المعدلة والوهمية" المليئة بالأخطاء البرمجية والفيروسات.</p>
+                <p class="highlight">لكن هنا يأتي دور WaFIX...</p>
+                <p>نحن <strong>الحل الوحيد في السوق</strong> الذي يرفض تعديل البرامج، بل نجعلك تستخدم "النسخة الرسمية
+                    الآمنة" ونتدخل نحن عبر نظامنا الخارجي لضخ التحديثات والإصلاحات البرمجية لتستمر في عملك دون انقطاع!
+                </p>
+            </div>
+            <div class="story-img">
+                <img src="img/2.png" alt="مشاكل توقف البرامج">
+            </div>
+        </div>
+    </section>
+
+    <section class="supported-tools reveal active" id="tools">
+        <h2 class="section-title">الأدوات التي <span>نحييها</span> بالكامل</h2>
+        <p class="section-desc">أنت تمتلك البرنامج، ونحن نضمن لك تشغيله. ندعم التحديثات الحصرية والإصلاحات العميقة
+            للأدوات
+            التسويقية التالية:</p>
+
+        <div class="tools-grid-new">
+            <div class="tool-card">
+                <div class="card-front">
+                    <img src="img/wasender logo.png" alt="WaSender">
+                    <span>WaSender</span>
+                </div>
+                <img src="img/wasender logo screen.png" alt="WaSender Interface" class="card-hover-img">
+            </div>
+
+            <div class="tool-card">
+                <div class="card-front">
+                    <img src="img/wacrm.png" alt="WaCRM">
+                    <span>WaCRM</span>
+                </div>
+                <img src="img/wacrm screen.png" alt="WaCRM Interface" class="card-hover-img">
+            </div>
+
+            <div class="tool-card">
+                <div class="card-front">
+                    <img src="img/defender.png" alt="WaDefender">
+                    <span>WaDefender</span>
+                </div>
+                <img src="img/defender screen.png" alt="WaDefender Interface" class="card-hover-img">
+            </div>
+
+            <div class="tool-card">
+                <div class="card-front">
+                    <img src="img/hammer.png" alt="WaHammer">
+                    <span>WaHammer</span>
+                </div>
+                <img src="img/hammer screen.png" alt="WaHammer Interface" class="card-hover-img">
+            </div>
+
+            <div class="tool-card">
+                <div class="card-front">
+                    <img src="img/filter.png" alt="WaFilter">
+                    <span>WaFilter</span>
+                </div>
+                <img src="img/filter screen.png" alt="WaFilter Interface" class="card-hover-img">
+            </div>
+
+            <div class="tool-card">
+                <div class="card-front">
+                    <img src="img/gmap.png" alt="Google Map Extractor">
+                    <span>G-Map Extractor</span>
+                </div>
+                <img src="img/gmap screen.png" alt="G-Map Interface" class="card-hover-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits" id="benefits">
+        <h2 class="section-title reveal">ماذا <span>تستفيد</span> عند اختيارنا؟</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card reveal">
+                <h3>🛡️ أمان تام لبياناتك</h3>
+                <p>لن تضطر لاستخدام نسخ ملغمة أو معدلة عشوائياً. أنت تعمل على النسخة الرسمية للمطور الأصلي، ونحن نوفر لك
+                    مسار تحديث آمن تماماً.</p>
+            </div>
+            <div class="benefit-card reveal">
+                <h3>⏱️ لا مزيد من الانقطاعات</h3>
+                <p>توقف الرد الآلي؟ تجميد أثناء الإرسال؟ فريقنا يراقب تغييرات المنصات ويصدر إصلاحات فورية عبر HUB لضمان
+                    عدم توقف حملاتك الإعلانية.</p>
+            </div>
+            <div class="benefit-card reveal">
+                <h3>💰 توفير هائل للمال</h3>
+                <p>بدلاً من شراء برامج جديدة باهظة الثمن كلما توقف برنامجك القديم، ادفع مبلغاً رمزياً لتحديث برامجك
+                    الحالية واستعد السيطرة على أدواتك.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="updates-section" id="updates">
+        <h2 class="section-title reveal">نحن لا نبيع الوهم.. <span>شاهد عملنا</span></h2>
+        <p class="section-desc reveal">هذا السجل يثبت استمراريتنا منذ توقف البرامج. نحن لا نتركك بعد الدفع، بل نصدر
+            تحديثات عميقة
+            باستمرار لحل كل مشكلة طارئة.</p>
+
+        <div class="changelog-box reveal">
+            <div class="update-item">
+                <span class="update-version">V3.23.5</span> <span class="update-date">— 30.03.2026</span>
+                <ul class="update-list">
+                    <li><strong>WaCRM 3.3.0 (الإصدار الرسمي) - تحديثات وحدة الردود السريعة:</strong></li>
+                    <li>نظام مجلدات جديد لتجميع وتسمية وتلوين الأزرار مع ميزة الاستعادة.</li>
+                    <li>دعم الاختيار المتعدد: اضغط مع الاستمرار على Ctrl لتحديد أزرار متعددة للنقل أو إعادة الترتيب
+                        الجماعي.
+                    </li>
+                    <li>تحسينات واجهة المستخدم: زوايا دائرية للأزرار وقائمة إعدادات انسيابية تظهر عند التمرير.</li>
+                    <li>حد الأحرف: تم توسيع الوصف من 15 إلى 50 حرفاً.</li>
+                    <li>مركز المساعدة: إضافة أيقونة (?) وعرض رقم الإصدار داخل إعدادات الردود السريعة.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.23.4</span> <span class="update-date">— 21.03.2026</span>
+                <ul class="update-list">
+                    <li><strong>WaSender 3.7.0 (الإصدار الرسمي):</strong> إصلاح مشكلة في وحدة الرد الآلي حيث لم تكن
+                        رسائل
+                        الاستطلاع (Poll) تُرسل. يتم الآن تسليم الاستطلاعات بشكل صحيح وموثوق أثناء الردود المؤتمتة.</li>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.23.3</span> <span class="update-date">— 21.03.2026</span>
+                <ul class="update-list">
+                    <li><strong>WaSender 3.7.0 (الإصدار الرسمي):</strong> إصلاح مشكلة حرجة في وحدة "تجهيز الأرقام"
+                        (Number
+                        Warmer) حيث كان النظام يقوم بالتبديل بين الحسابات فقط دون إرسال رسائل. أداة التجهيز الآن مستقرة
+                        تماماً
+                        وتبادل الرسائل بين الحسابات يعمل بشكل صحيح.</li>
+                    <li><strong>WaCRM 3.3.0 (الإصدار الرسمي):</strong> إصلاح مشكلة بسيطة في وحدة الرد الآلي حيث كانت
+                        تضاف مساحة
+                        فارغة زائدة أسفل كل رسالة. يتم الآن إرسال الرسائل بشكل نظيف دون أي مسافات غير مرغوب فيها.</li>
+
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.22.3</span> <span class="update-date">— 03.03.2026</span>
+                <ul class="update-list">
+                    <li>تحسين آلية استخراج الأرقام من المجموعات والدردشات والتصنيفات (Labels)، مما يعالج الحالات التي
+                        كانت تعود
+                        فيها معرفات (IDs) غير صحيحة أو غير معتادة. يسترجع النظام الآن أرقام الهواتف الحقيقية بدقة.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.22.2</span> <span class="update-date">— 28.02.2026</span>
+                <ul class="update-list">
+                    <li><strong>WaCRM 3.3.0 (الإصدارات الرسمية):</strong> إصلاح مشكلة حرجة في وحدة الرد الآلي كانت تمنع
+                        إرسال
+                        رسالة الترحيب بشكل صحيح.</li>
+                    <li>حل خلل برمجى حيث كانت رسالة الترحيب تُرسل بشكل متكرر أو تُرسل جنباً إلى جنب مع الردود القائمة
+                        على
+                        الكلمات المفتاحية، مما يضمن تدفق استجابة تلقائية أكثر سلاسة ودقة.</li>
+                    <li>تعزيز منطق التحقق من سجل الدردشة للتمييز بدقة بين المحادثات الجديدة والقائمة، ومنع التحيات
+                        التلقائية
+                        الزائدة.</li>
+                    <li>إصلاح التحقق من صحة رابط دعوة المجموعة: حل مشكلة الروابط الكاملة أو الروابط التي تحتوي على
+                        معلمات
+                        إضافية.</li>
+
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.22.0</span> <span class="update-date">— 27.02.2026</span>
+                <ul class="update-list">
+                    <li>يتضمن هذا الإصدار إصلاحات أخطاء مهمة لمعالجة المشكلات التي ظهرت بعد التغييرات الأخيرة في المنصة.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.20.26</span> <span class="update-date">— 27.02.2026</span>
+                <ul class="update-list">
+                    <li>إصلاح مشكلة تؤثر على استرداد الرسائل (getMessages) بسبب تغييرات هيكلية داخلية.</li>
+                    <li>حل خطأ قيمة المعرف غير الصالحة (WID) عند التعامل مع بعض الكائنات أو فتح الدردشات.</li>
+                    <li>إصلاح مشكلة إرسال عند تسليم الرسائل إلى معرفات محددة تعتمد على LID، مما يحسن استقرار الرسائل
+                        بشكل عام.
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.20.25</span> <span class="update-date">— 26.02.2026</span>
+                <ul class="update-list">
+                    <li><strong>WaSender 3.7.0 & WaCRM 3.3.0 (الإصدارات الرسمية):</strong> إصلاح مشكلة تؤثر على بعض
+                        المستخدمين
+                        حيث لم يكن استخراج أعضاء المجموعة يعمل بشكل صحيح أو يعيد نتائج غير مكتملة في حالات معينة.</li>
+                    <li>إصلاح مشكلة مراسلة حيث كان يتم تخطي بعض المستلمين عند إرسال الرسائل القياسية أو الردود السريعة
+                        أو رسائل
+                        الرد الآلي، مما يضمن تلقي جميع جهات الاتصال المحددة للرسائل دون استثناء.</li>
+                    <li>تحسين آلية استخراج الأرقام من المجموعات والدردشات والتصنيفات (Labels)، ومعالجة الحالات التي كانت
+                        تعود
+                        فيها معرفات غير صحيحة. يسترجع النظام الآن أرقام الهواتف الحقيقية بدقة.</li>
+                    <li>تعزيز استقرار الإرسال العام وضمان استهداف دقيق لرقم الهاتف الصحيح لكل رسالة، مع تحسين الموثوقية
+                        أثناء
+                        الحملات والإرسال الجماعي.</li>
+
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.20.24</span> <span class="update-date">— 20.02.2026</span>
+                <ul class="update-list">
+                    <li><strong>WaSender & WaCRM:</strong> إصلاح مشكلة فشل إرسال المرفقات الوسائط (الصور، الفيديو،
+                        والصوت) في
+                        الرسائل القياسية والردود السريعة ووضع الرد الآلي.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.20.23</span> <span class="update-date">— 15.02.2026</span>
+                <ul class="update-list">
+                    <li><strong>تحديث WaSender 3.7.0 الرسمي:</strong> إصلاح واستعادة ميزة استخراج بيانات التواصل
+                        الاجتماعي من
+                        محركات البحث والمنصات الاجتماعية، ومعالجة الفشل السابق وضمان استرجاع البيانات بالكامل.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.20.22</span> <span class="update-date">— 14.02.2026</span>
+                <ul class="update-list">
+                    <li><strong>تحديث WaSender 3.7.0 الرسمي:</strong> إصلاح مشكلة التحديث التلقائي لـ ChromeDriver لضمان
+                        تنزيل
+                        الإصدار الرسمي الصحيح بشكل سليم.</li>
+                    <li>إصلاح استخراج بيانات خرائط جوجل عند استخدام الواجهة الكلاسيكية القديمة (وضع المتصفح القديم)، وحل
+                        مشكلات
+                        التقييم وتكرار البيانات.</li>
+                    <li>(قد يواجه المستخدمون الذين يشغلون نسخاً غير رسمية أو معدلة مشكلات؛ هذا التحديث مخصص فقط للإصدار
+                        الرسمي
+                        الأحدث 3.7.0).</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.20.21</span> <span class="update-date">— 14.02.2026</span>
+                <ul class="update-list">
+                    <li><strong>WaSender:</strong> إصلاح مشكلة تؤثر على بعض المستخدمين حيث كان استخراج أرقام أعضاء
+                        المجموعة غير
+                        متسق أو يفشل جزئياً، وكذلك حل مشكلة متعلقة باستخراج أعضاء المجموعة النشطين.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.20.2</span> <span class="update-date">— 26.01.2026</span>
+                <ul class="update-list">
+                    <li><strong>WaSender:</strong> إصلاح مشكلة في استخراج البيانات من خرائط جوجل.</li>
+                    <li><strong>GMExtractor:</strong> إضافة دعم التحديث للإصدارات المستقبلية وإصلاح مشكلات استخراج
+                        البيانات من
+                        خرائط جوجل.</li>
+                    <li>إصلاح مشكلة حيث لم تكن الرسائل المرسلة بواسطة الرد الآلي يتم وضع علامة "مقروءة" عليها في WaCRM و
+                        WaSender.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.19.72</span> <span class="update-date">— 16.01.2026</span>
+                <ul class="update-list">
+                    <li>إصلاح مشكلة عدم إرسال رسائل القائمة (List Messages) بشكل صحيح في وضع الرد الآلي.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.19.71</span> <span class="update-date">— 15.01.2026</span>
+                <ul class="update-list">
+                    <li>إصلاح مشكلة في الرسائل المرسلة لجهات الاتصال الجديدة حيث كانت تصل ولكن الدردشة لا تظهر أو تفتح
+                        بشكل
+                        صحيح.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.19.46</span> <span class="update-date">— 02.01.2026</span>
+                <ul class="update-list">
+                    <li>إصلاح مشكلة تجمد البرنامج أثناء الفحص عند الوصول إلى مرحلة التحقق من جهة الاتصال داخل
+                        WaDefender.</li>
+                </ul>
+            </div>
+
+            <div class="update-item">
+                <span class="update-version">V3.19.45</span> <span class="update-date">— 21.12.2025</span>
+                <ul class="update-list">
+                    <li>إصلاح شامل لرسائل الترحيب والردود السريعة لضمان تسليم الوسائط والرسائل بنجاح للأرقام الجديدة
+                        وعملاء
+                        الإعلانات.</li>
+                    <li>إصلاح مشكلات المراسلة عند الاتصال بالمستخدمين المحددين عبر التصنيفات (Labels).</li>
+                    <li>واجهة مستخدم جديدة ومنظمة: إضافة ميزة الطي الذكي لأزرار الرد السريع لتوفير مساحة الشاشة، مع خيار
+                        لتثبيت
+                        الردود المستخدمة بكثرة.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots-testimonials reveal" id="reviews">
+        <h2 class="section-title">نتائج حقيقية.. <span>تتحدث عن نفسها</span></h2>
+        <p class="section-desc">لا تأخذ بكلامنا فقط. اسحب الشاشة لتشاهد ما يقوله عملاؤنا بعد استخدامهم لـ WaFIX واستعادة
+            برامجهم للعمل بكفاءة.</p>
+
+
+        <div class="slider-container" id="draggable-slider">
+
+            <div class="screen-card">
+                <img src="img/screen/screen (0).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (1).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (2).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (3).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (4).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (5).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (6).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (7).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (8).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (9).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (10).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (11).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (12).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (13).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (14).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (15).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (16).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (17).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (18).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (19).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (20).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (21).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (22).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (23).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (24).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (25).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (26).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (27).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (28).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (29).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (30).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (31).jpg" alt="رأي عميل" draggable="false">
+            </div>
+            <div class="screen-card">
+                <img src="img/screen/screen (32).jpg" alt="رأي عميل" draggable="false">
+            </div>
+        </div>
+    </section>
+    <section class="bundle-offer reveal" id="bundle">
+        <div class="bundle-text">
+            <h2>🔥 العرض الأقوى: <span>الباقة الشاملة</span></h2>
+
+            <div class="bundle-img mobile-img">
+                <div class="floating-bundle">
+                    <div class="floating-grid">
+                        <img src="img/WAFIX KeyGenbox.png" alt="WaFIX Keygen">
+                        <img src="img/WAFIX HUB box.png" alt="WaFIX HUB">
+                        <img src="img/wasender box.png" alt="WaSender">
+                        <img src="img/wacrm box.png" alt="WaCRM">
+                        <img src="img/defender box.png" alt="WaDefender">
+                        <img src="img/hammer box.png" alt="WaHammer">
+                        <img src="img/filter box.png" alt="WaFilter">
+                        <img src="img/gmap box.png" alt="GMap Extractor">
+                    </div>
+                    <img src="img/30usd.png" alt="30 دولار" class="price-badge-float">
+                </div>
+            </div>
+
+            <p style="font-size: 1.2em; margin-bottom: 25px; color: var(--text-muted);">لا تمتلك البرامج وتريد البدء
+                بقوة؟ احصل على ترسانة التسويق الكاملة مع الاستقلالية التامة، ووفر مئات الدولارات!</p>
+            <ul>
+                <li>الحصول على <strong>6 أدوات تسويق رسمية</strong> بالكامل.</li>
+                <li>رخصة <strong>مدى الحياة</strong> لكل برنامج.</li>
+                <li>مرفق معها <strong>الكيجن (KEYGEN)</strong> الخاص بكل برنامج لتفعيل عدد غير محدود من الأجهزة.</li>
+                <li>اشتراك لمدة <strong>سنة كاملة</strong> في نظام التحديثات (WaFIX HUB).</li>
+                <li>يتضمن <strong>كيجن التحديثات</strong> لتتمكن من إنشاء مفاتيح تحديث بحرية!</li>
+            </ul>
+            <a href="https://wa.me/212766283912?text=أهلاً%20WaFIX،%20أود%20شراء%20الباقة%20الشاملة%20(30$)%20التي%20تحتوي%20على%20الـ%206%20برامج%20مع%20اشتراك%20WaFIX%20السنوي."
+                class="btn-primary" style="font-size: 1.3em; margin-top: 20px;">احصل على الباقة بـ 30$
+                فقط!</a>
+        </div>
+
+        <div class="bundle-img desktop-img">
+            <div class="floating-bundle">
+                <div class="floating-grid">
+                    <img src="img/WAFIX KeyGenbox.png" alt="WaFIX Keygen">
+                    <img src="img/WAFIX HUB box.png" alt="WaFIX HUB">
+                    <img src="img/wasender box.png" alt="WaSender">
+                    <img src="img/wacrm box.png" alt="WaCRM">
+                    <img src="img/defender box.png" alt="WaDefender">
+                    <img src="img/hammer box.png" alt="WaHammer">
+                    <img src="img/filter box.png" alt="WaFilter">
+                    <img src="img/gmap box.png" alt="GMap Extractor">
+                </div>
+                <img src="img/30usd.png" alt="30 دولار" class="price-badge-float">
+            </div>
+        </div>
+    </section>
+    <section class="pricing" id="pricing">
+        <h2 class="section-title reveal">اختر <span>الحل</span> الذي يناسبك</h2>
+        <p class="section-desc reveal">أسعار واضحة، بدون مفاجآت. استثمر في استقرار أعمالك.</p>
+
+        <div class="pricing-grid reveal">
+            <div class="card">
+                <h3>التجربة الآمنة</h3>
+                <div class="price">$1.5</div>
+                <ul>
+                    <li><i>✔</i> إصلاح لمرة واحدة للإصدار الحالي</li>
+                    <li><i class="cross">✖</i> لا يشمل تحديثات مستقبلية</li>
+                    <li><i>✔</i> مثالي لتجربة قوة نظامنا والتأكد منه</li>
+                </ul>
+                <a href="https://wa.me/212766283912?text=أهلاً%20WaFIX،%20أريد%20شراء%20باقة%20الإصلاح%20لمرة%20واحدة%20(1.5$)%20لتحديث%20برنامجي%20الآن."
+                    class="btn-primary"
+                    style="width: 100%; background: transparent; border: 2px solid var(--primary); color: var(--primary); box-shadow: none;">اطلب
+                    الآن</a>
+            </div>
+
+            <div class="card">
+                <h3>المستخدم القياسي</h3>
+                <div class="price">$5 <span>/ سنة</span></div>
+                <ul>
+                    <li><i>✔</i> الحصول على تطبيق WaFIX HUB</li>
+                    <li><i>✔</i> تحديثات وإصلاحات مجانية لعام كامل</li>
+                    <li><i>✔</i> مفتاح تحديث مجاني لكل إصدار جديد</li>
+                    <li><i class="cross">✖</i> لا يمكن إنشاء مفاتيح لأشخاص آخرين</li>
+                </ul>
+                <a href="https://wa.me/212766283912?text=مرحباً،%20مهتم%20بالاشتراك%20في%20الباقة%20السنوية%20القياسية%20(5$)%20للحصول%20على%20تحديثات%20WaFIX%20لمدة%20سنة%20كاملة."
+                    class="btn-primary"
+                    style="width: 100%; background: transparent; border: 2px solid var(--primary); color: var(--primary); box-shadow: none;">اشترك
+                    الآن</a>
+            </div>
+
+            <div class="card">
+                <h3>اشتراك الموزع</h3>
+                <div class="price">$20 <span>/ سنة</span></div>
+                <ul>
+                    <li><i>✔</i> تطبيق HUB + WaFIX KEYGEN</li>
+                    <li><i>✔</i> إنشاء مفاتيح غير محدودة لعملائك</li>
+                    <li><i>✔</i> تحديثات مجانية لك ولعملائك طوال العام</li>
+                    <li><i>✔</i> الخيار المثالي لمقدمي الخدمات</li>
+                </ul>
+                <a href="https://wa.me/212766283912?text=أهلاً%20WaFIX،%20أريد%20تفعيل%20حساب%20الموزع%20(20$)%20للحصول%20على%20الكيجن%20وإدارة%20تراخيص%20عملائي."
+                    class="btn-primary"
+                    style="width: 100%; background: transparent; border: 2px solid var(--primary); color: var(--primary); box-shadow: none;">اشترك
+                    كموزع</a>
+            </div>
+
+            <div class="card featured">
+                <h3>الباقة الشاملة</h3>
+                <div class="price">$30 <span>/ مرة واحدة</span></div>
+                <ul>
+                    <li><i>✔</i> 6 أدوات تسويق رسمية كاملة</li>
+                    <li><i>✔</i> رخصة مدى الحياة للبرامج + KEYGEN</li>
+                    <li><i>✔</i> اشتراك سنة في WaFIX HUB للتحديثات</li>
+                    <li><i>✔</i> كيجن التحديثات لإنشاء المفاتيح بحرية</li>
+                </ul>
+                <a href="https://wa.me/212766283912?text=أهلاً%20WaFIX،%20أود%20شراء%20الباقة%20الشاملة%20(30$)%20التي%20تحتوي%20على%20الـ%206%20برامج%20مع%20اشتراك%20WaFIX%20السنوي."
+                    class="btn-primary" style="width: 100%;">احصل على الباقة</a>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="reveal">
+        <h2 style="color: var(--text-main); margin-bottom: 10px; font-weight: 800;">WaFIX HUB</h2>
+        <p class="footer-text">الخيار الأول والمستقل لاستقرار أدوات التسويق وتحديثها بأمان.</p>
+
+        <div style="margin: 40px 0;">
+            <p style="margin-bottom: 10px; color: var(--text-main); font-weight: bold;">نقبل الدفع الآمن عبر:</p>
+            <div class="payment-methods">
+                <img src="img/binance.png" alt="Binance">
+                <img src="img/PayPal.png" alt="PayPal">
+                <img src="img/visa.png" alt="Visa">
+            </div>
+        </div>
+        <div style="margin: 40px 0 20px;">
+            <p style="margin-bottom: 15px; color: var(--text-main); font-weight: bold; font-size: 1.1em;">نحن هنا:</p>
+            <div class="social-icons">
+                <a href="https://wa.me/212766283912" target="_blank" class="whatsapp" aria-label="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <a href="https://web.facebook.com/wafixhub" target="_blank" class="facebook" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+
+                <a href="https://www.youtube.com/@WAFIXHUB" target="_blank" class="youtube" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+        <p class="footer-text" style="opacity: 0.5;">© 2026 WaFIX HUB. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // تأثير الظهور (Reveal Animation)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // تفعيل أولي
+
+        // كود تفعيل قائمة الهواتف (Hamburger Menu)
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            if (navMenu.classList.contains('active')) {
+                menuBtn.innerHTML = '✕';
+            } else {
+                menuBtn.innerHTML = '☰';
+            }
+        });
+
+        // إغلاق القائمة عند النقر على أي رابط في الهاتف
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuBtn.innerHTML = '☰';
+            });
+        });
+
+        // كود سحب السلايدر بالماوس للحواسيب (Drag to Scroll)
+        const slider = document.getElementById('draggable-slider');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.scrollSnapType = 'none'; // تعطيل السناب أثناء السحب ليكون سلساً
+            slider.style.scrollBehavior = 'auto';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.scrollSnapType = 'x mandatory'; // إعادة تفعيل السناب
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.scrollSnapType = 'x mandatory';
+            slider.style.scrollBehavior = 'smooth'; // ليعود لمكانه بنعومة
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // سرعة السحب (رقم 2 مضاعف السرعة)
+            slider.scrollLeft = scrollLeft - walk;
+        });
+        // كود تحويل تمرير عجلة الماوس العمودي إلى أفقي للسلايدر
+        slider.addEventListener('wheel', (e) => {
+            // حفظ موضع السكرول الحالي قبل تحريك عجلة الماوس
+            const previousScrollLeft = slider.scrollLeft;
+
+            // تحريك السلايدر أفقياً (استخدمنا السالب لأن الموقع عربي RTL)
+            // ضربنا القيمة في 1.5 لزيادة سرعة التمرير وجعله فائق السلاسة
+            slider.scrollLeft -= (e.deltaY * 1.5);
+
+            // التحقق الذكي: إذا تحرك السلايدر فعلاً (لم يصل للبداية أو النهاية)
+            // نقوم بمنع الصفحة من النزول للأسفل
+            if (Math.round(slider.scrollLeft) !== Math.round(previousScrollLeft)) {
+                e.preventDefault();
+            }
+            // أما إذا وصل للنهاية ولم يتحرك، سيتم تجاهل الأمر وتنزل الصفحة بشكل طبيعي
+        }, { passive: false });
+
+    </script>
+
+</body>
+
+</html>
