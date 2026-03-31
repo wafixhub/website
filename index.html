@@ -91,17 +91,17 @@
             }
         }
         header {
-            background: transparent; 
+            background: transparent;
             padding: 30px 5%;
             display: flex;
-            justify-content: center; 
+            justify-content: center;
             align-items: center;
-            position: absolute; 
+            position: absolute;
             top: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: none; 
-            box-shadow: none; 
+            border-bottom: none;
+            box-shadow: none;
         }
         .logo-name {
             font-size: 1.6rem;
@@ -1332,7 +1332,8 @@
 <body>
     <header>
         <div class="logo">
-            <a href="#" style="display: flex; align-items: center; justify-content: center; gap: 12px; text-decoration: none;">
+            <a href="#"
+                style="display: flex; align-items: center; justify-content: center; gap: 12px; text-decoration: none;">
                 <img src="img/logo.png" alt="WaFIX HUB Logo">
                 <span class="logo-name">WaFIX <span>HUB</span></span>
             </a>
@@ -1879,25 +1880,6 @@
         }
         window.addEventListener("scroll", reveal);
         reveal();
-        // يمكنك حذف هذا الجزء بالكامل لأنه لم يعد له فائدة
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
-                menuBtn.innerHTML = '✕';
-            } else {
-                menuBtn.innerHTML = '☰';
-            }
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuBtn.innerHTML = '☰';
-            });
-        });
         const slider = document.getElementById('draggable-slider');
         let isDown = false;
         let startX;
