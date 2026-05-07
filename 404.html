@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة غير موجودة | WaFIX HUB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #070b14;
+            --primary: #00e676;
+            --primary-glow: rgba(0, 230, 118, 0.5);
+            --secondary: #00b4d8;
+            --secondary-glow: rgba(0, 180, 216, 0.4);
+            --text-main: #f8f9fa;
+            --text-muted: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+            z-index: 10;
+        }
+
+        .error-icon {
+            font-size: 100px;
+            color: #ff4757;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .error-icon::after {
+            content: '\f121';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.2;
+            transform: scale(1.5);
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(to bottom, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -5px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn-home {
+            background: linear-gradient(45deg, #00c853, var(--primary));
+            color: #000;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 800;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .btn-home:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--primary-glow);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .footer-logo {
+            position: absolute;
+            bottom: 30px;
+            opacity: 0.5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .footer-logo img {
+            height: 30px;
+        }
+
+        .footer-logo span {
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-tools"></i>
+        </div>
+        <div class="error-code">404</div>
+        <h1>عذراً، هذا الرابط يحتاج إلى إصلاح!</h1>
+        <p>
+            الصفحة التي تحاول الوصول إليها غير موجودة أو تم نقلها.
+            لا تقلق، نظام <strong>WaFIX HUB</strong> يعمل دائماً، ولكن هذه الصفحة خارج نطاق التغطية.
+        </p>
+        <a href="index.html" class="btn-home">
+            <i class="fas fa-house"></i>
+            العودة للرئيسية
+        </a>
+    </div>
+
+    <a href="index.html" class="footer-logo">
+        <img src="img/logo.png" alt="WaFIX Logo">
+        <span>WaFIX <span style="color: var(--primary);">HUB</span></span>
+    </a>
+
+</body>
+
+</html>
