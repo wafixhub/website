@@ -55,9 +55,9 @@
     <!-- =========================================================
          ICONS
     ========================================================== -->
-    <link href="/img/wafixicon.ico?v=2" rel="icon" type="image/x-icon" />
-    <link href="/img/wafixicon.ico?v=2" rel="shortcut icon" />
-    <link href="/img/wafixicon.ico?v=2" rel="apple-touch-icon" />
+    <link href="../img/wafixicon.ico?v=2" rel="icon" type="image/x-icon" />
+    <link href="../img/wafixicon.ico?v=2" rel="shortcut icon" />
+    <link href="../img/wafixicon.ico?v=2" rel="apple-touch-icon" />
     <!-- =========================================================
          OPEN GRAPH
     ========================================================== -->
@@ -568,196 +568,100 @@
            HEADER
         ========================================================== */
 
+        /* =========================================================
+           HEADER
+        ========================================================== */
+
         header {
-
-            position:
-                fixed;
-
-            top:
-                16px;
-
-            left:
-                50%;
-
-            transform:
-                translateX(-50%);
-
-            width:
-                min(1180px, 94%);
-
-            min-height:
-                72px;
-
-            padding:
-                11px 18px;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
-            gap:
-                25px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                22px;
-
-            background:
-                rgba(5, 8, 18, 0.74);
-
-            backdrop-filter:
-                blur(22px);
-
-            -webkit-backdrop-filter:
-                blur(22px);
-
-            box-shadow:
-                0 18px 55px rgba(0, 0, 0, 0.22);
-
-            z-index:
-                1000;
-
-            transition:
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: min(1180px, 94%);
+            min-height: 66px;
+            padding: 9px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: rgba(5, 8, 18, 0.78);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+            z-index: 1000;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 background 0.3s ease,
                 border-color 0.3s ease,
-                box-shadow 0.3s ease;
+                box-shadow 0.3s ease,
+                opacity 0.35s ease;
+            will-change: transform;
         }
-
 
         header.scrolled {
-
-            background:
-                rgba(5, 8, 18, 0.94);
-
-            border-color:
-                rgba(0, 230, 118, 0.18);
-
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.42);
+            background: rgba(5, 8, 18, 0.95);
+            border-color: rgba(0, 230, 118, 0.22);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
+        header.header-hidden {
+            transform: translate(-50%, -130%);
+            opacity: 0;
+            pointer-events: none;
+        }
 
         .logo a {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                11px;
-
-            text-decoration:
-                none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
-
 
         .logo img {
-
-            height:
-                42px;
-
-            width:
-                auto;
-
-            filter:
-                drop-shadow(0 0 12px var(--primary-glow));
-
-            transition:
-                transform 0.3s ease;
+            height: 38px;
+            width: auto;
+            filter: drop-shadow(0 0 12px var(--primary-glow));
+            transition: transform 0.3s ease;
         }
-
 
         .logo:hover img {
-
-            transform:
-                rotate(-4deg) scale(1.07);
+            transform: rotate(-4deg) scale(1.07);
         }
-
 
         .logo-name {
-
-            font-size:
-                1.34rem;
-
-            font-weight:
-                900;
-
-            letter-spacing:
-                1px;
-
-            color:
-                var(--secondary);
+            font-size: 1.25rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            color: var(--secondary);
         }
-
 
         .logo-name span {
-
-            color:
-                var(--primary);
-
-            text-shadow:
-                0 0 15px var(--primary-glow);
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary-glow);
         }
-
 
         .nav-links {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                7px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
-
 
         .nav-links a {
-
-            position:
-                relative;
-
-            padding:
-                9px 13px;
-
-            border-radius:
-                10px;
-
-            text-decoration:
-                none;
-
-            color:
-                #d9e1eb;
-
-            font-size:
-                0.91rem;
-
-            font-weight:
-                700;
-
-            transition:
-                color 0.25s ease,
-                background 0.25s ease;
+            position: relative;
+            padding: 7px 11px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #d9e1eb;
+            font-size: 0.88rem;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: color 0.25s ease, background 0.25s ease;
         }
 
-
         .nav-links a:hover {
-
-            color:
-                var(--primary);
-
-            background:
-                var(--primary-soft);
+            color: var(--primary);
+            background: var(--primary-soft);
         }
 
 
@@ -3482,7 +3386,7 @@
            MOBILE / TABLET
         ========================================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1060px) {
 
             header {
 
@@ -4173,6 +4077,320 @@
             }
         }
 
+        .header-actions {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-header-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 40px;
+            padding: 7px 15px;
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.16), rgba(0, 180, 216, 0.16));
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.84rem;
+            font-weight: 800;
+            white-space: nowrap;
+            box-shadow: 0 0 16px rgba(0, 230, 118, 0.22);
+            transition: 0.25s ease;
+        }
+
+        .btn-header-download i {
+            color: var(--primary);
+            font-size: 0.92rem;
+            transition: transform 0.25s ease;
+        }
+
+        .btn-header-download:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.28), rgba(0, 180, 216, 0.28));
+            border-color: #00e676;
+            box-shadow: 0 0 25px rgba(0, 230, 118, 0.45);
+            color: #ffffff;
+        }
+
+        .btn-header-download:hover i {
+            transform: translateY(2px);
+        }
+
+        .nav-links a.nav-download-item {
+            display: none;
+            color: var(--primary);
+            background: rgba(0, 230, 118, 0.08);
+            border: 1px solid rgba(0, 230, 118, 0.2);
+        }
+
+        .nav-links a.nav-download-item:hover {
+            background: rgba(0, 230, 118, 0.18);
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 1060px) {
+            .nav-links a.nav-download-item {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .btn-secondary-cta {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 26px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 180, 216, 0.45);
+            background: rgba(0, 180, 216, 0.08);
+            color: #f8fafc;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.02rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn-secondary-cta i {
+            color: var(--secondary);
+            font-size: 1.12rem;
+        }
+
+        .btn-secondary-cta:hover {
+            transform: translateY(-4px);
+            background: rgba(0, 180, 216, 0.20);
+            border-color: var(--secondary);
+            box-shadow: 0 12px 30px rgba(0, 180, 216, 0.32);
+            color: #ffffff;
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 100px 5%;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, rgba(0, 180, 216, 0.06), transparent 70%);
+        }
+
+        .download-container {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .download-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            background: rgba(0, 230, 118, 0.1);
+            color: var(--primary);
+            font-size: 0.92rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .download-title {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .download-title span {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .download-subtitle {
+            max-width: 750px;
+            margin: 0 auto 45px;
+            color: var(--muted);
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        .download-card {
+            position: relative;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 45px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 230, 118, 0.25);
+            background: linear-gradient(145deg, rgba(16, 23, 40, 0.92), rgba(8, 13, 25, 0.85));
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 230, 118, 0.08);
+            overflow: hidden;
+        }
+
+        .download-card-glow {
+            position: absolute;
+            top: -120px;
+            left: -120px;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.25), transparent 70%);
+            pointer-events: none;
+        }
+
+        .download-card-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            align-items: center;
+            gap: 40px;
+            text-align: left;
+        }
+
+        .download-box-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .download-box-img img {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+            animation: heroFloat 5s ease-in-out infinite;
+        }
+
+        .download-version-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 6px 14px;
+            background: rgba(10, 17, 32, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            color: #f1f5f9;
+            font-family: monospace, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 12px var(--primary);
+            animation: badgePulse 1.8s infinite;
+        }
+
+        .download-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .download-specs span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid var(--border);
+            color: #cbd5e1;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .download-specs span i {
+            color: var(--secondary);
+        }
+
+        .download-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        @media (max-width: 850px) {
+            .download-card-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 25px;
+            }
+
+            .download-box-img img {
+                max-width: 170px;
+            }
+
+            .download-specs {
+                justify-content: center;
+            }
+
+            .download-actions {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .download-section {
+                padding: 70px 4%;
+            }
+
+            .download-card {
+                padding: 30px 20px;
+                border-radius: 24px;
+            }
+
+            .download-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .download-actions a {
+                width: 100%;
+            }
+
+            .btn-header-download {
+                min-height: 38px;
+                padding: 6px 12px;
+                font-size: 0.80rem;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .btn-header-download span {
+                display: none;
+            }
+
+            .btn-header-download {
+                width: 38px;
+                min-width: 38px;
+                padding: 0;
+            }
+        }
+
         /* English header compact fix */
 
         header {
@@ -4211,6 +4429,7 @@
     <link href="https://wafixhub.com/en/" hreflang="en" rel="alternate" />
     <link href="https://wafixhub.com/" hreflang="x-default" rel="alternate" />
     <meta content="ar_MA" property="og:locale:alternate" />
+    <link rel="stylesheet" href="../site-ui.css">
 </head>
 
 <body>
@@ -4219,8 +4438,8 @@
     ========================================================== -->
     <header id="main-header">
         <div class="logo">
-            <a aria-label="WaFIX HUB" href="https://wafixhub.com/">
-                <img alt="WaFIX HUB logo" src="/img/logo.png" />
+            <a aria-label="WaFIX HUB" href="./">
+                <img alt="WaFIX HUB logo" src="../img/logo.png" />
                 <span class="logo-name">
                     WaFIX <span>HUB</span>
                 </span>
@@ -4234,7 +4453,7 @@
                 Supported Apps
             </a>
             <a href="#compatibility">
-                Supported Issues
+                Compatibility
             </a>
             <a href="#updates">
                 Updates
@@ -4245,11 +4464,19 @@
             <a href="#pricing">
                 Pricing
             </a>
-        </nav><a aria-label="Switch to Arabic" class="language-switch" dir="rtl" href="https://wafixhub.com/"
-            lang="ar"><i class="fa-solid fa-globe"></i><span>العربية</span></a>
-        <button aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menu-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+        </nav>
+
+        <div class="header-actions">
+            <a href="download/" class="btn-header-download" aria-label="Download WaFIX HUB" title="Download WaFIX HUB">
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                <span>Download</span>
+            </a>
+            <a aria-label="Switch to Arabic" class="language-switch" dir="rtl" href="../" lang="ar"><i
+                    class="fa-solid fa-globe"></i><span>العربية</span></a>
+            <button aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </header>
     <!-- =========================================================
          HERO
@@ -4301,15 +4528,19 @@
                         WaCRM Auto Reply not working
                     </span>
                 </div>
-                <a class="btn-primary" href="#pricing" style="font-size:1.05rem;">
-                    <i class="fa-solid fa-bolt"></i>
-
-                    View Plans &amp; Restore Your Workflow
-
-                </a>
+                <div class="hero-actions">
+                    <a class="btn-primary" href="#pricing" style="font-size:1.05rem;">
+                        <i class="fa-solid fa-bolt"></i>
+                        View Plans &amp; Restore Your Workflow
+                    </a>
+                    <a class="btn-secondary-cta" href="download/">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                        Download WaFIX HUB Now
+                    </a>
+                </div>
             </div>
             <div class="hero-img reveal active">
-                <img alt="WaFIX HUB desktop interface for updating and fixing WaSender and WaCRM" src="/img/1.png" />
+                <img alt="WaFIX HUB desktop interface for updating and fixing WaSender and WaCRM" src="../img/1.png" />
             </div>
         </div>
     </section>
@@ -4373,7 +4604,7 @@
                 </p>
             </div>
             <div class="story-img">
-                <img alt="WaSender and WaCRM compatibility problems" loading="lazy" src="/img/2.png" />
+                <img alt="WaSender and WaCRM compatibility problems" loading="lazy" src="../img/2.png" />
             </div>
         </div>
     </section>
@@ -4398,63 +4629,65 @@
             <!-- WaSender -->
             <div aria-label="WaSender" class="tool-card" tabindex="0">
                 <div class="card-front">
-                    <img alt="WaSender" loading="lazy" src="/img/wasender logo.png" />
+                    <img alt="WaSender" loading="lazy" src="../img/wasender logo.png" />
                     <span>
                         WaSender
                     </span>
                 </div>
                 <img alt="WaSender interface" class="card-hover-img" loading="lazy"
-                    src="/img/wasender logo screen.png" />
+                    src="../img/wasender logo screen.png" />
             </div>
             <!-- WaCRM -->
             <div aria-label="WaCRM" class="tool-card" tabindex="0">
                 <div class="card-front">
-                    <img alt="WaCRM" loading="lazy" src="/img/wacrm.png" />
+                    <img alt="WaCRM" loading="lazy" src="../img/wacrm.png" />
                     <span>
                         WaCRM
                     </span>
                 </div>
-                <img alt="WaCRM interface" class="card-hover-img" loading="lazy" src="/img/wacrm screen.png" />
+                <img alt="WaCRM interface" class="card-hover-img" loading="lazy" src="../img/wacrm screen.png" />
             </div>
             <!-- WaDefender -->
             <div aria-label="WaDefender" class="tool-card" tabindex="0">
                 <div class="card-front">
-                    <img alt="WaDefender" loading="lazy" src="/img/defender.png" />
+                    <img alt="WaDefender" loading="lazy" src="../img/defender.png" />
                     <span>
                         WaDefender
                     </span>
                 </div>
-                <img alt="WaDefender interface" class="card-hover-img" loading="lazy" src="/img/defender screen.png" />
+                <img alt="WaDefender interface" class="card-hover-img" loading="lazy"
+                    src="../img/defender screen.png" />
             </div>
             <!-- WaHammer -->
             <div aria-label="WaHammer" class="tool-card" tabindex="0">
                 <div class="card-front">
-                    <img alt="WaHammer" loading="lazy" src="/img/hammer.png" />
+                    <img alt="WaHammer" loading="lazy" src="../img/hammer.png" />
                     <span>
                         WaHammer
                     </span>
                 </div>
-                <img alt="WaHammer interface" class="card-hover-img" loading="lazy" src="/img/hammer screen.png" />
+                <img alt="WaHammer interface" class="card-hover-img" loading="lazy" src="../img/hammer screen.png" />
             </div>
             <!-- WaFilter -->
             <div aria-label="WaFilter" class="tool-card" tabindex="0">
                 <div class="card-front">
-                    <img alt="WaFilter" loading="lazy" src="/img/filter.png" />
+                    <img alt="WaFilter" loading="lazy" src="../img/filter.png" />
                     <span>
                         WaFilter
                     </span>
                 </div>
-                <img alt="WaFilter interface" class="card-hover-img" loading="lazy" src="/img/filter screen.png" />
+                <img alt="WaFilter interface" class="card-hover-img" loading="lazy" src="../img/filter screen.png" />
             </div>
             <!-- GMap -->
             <div aria-label="G-Map Extractor" class="tool-card" tabindex="0">
                 <div class="card-front">
-                    <img alt="Google Map Extractor" loading="lazy" src="/img/gmap.png" />
+                    <img alt="Google Map Extractor" loading="lazy" src="../img/gmap.png" />
                     <span>
                         G-Map Extractor
                     </span>
                 </div>
-                <img alt="G-Map Extractor interface" class="card-hover-img" loading="lazy" src="/img/gmap screen.png" />
+                <img alt="G-Map Extractor interface" class="card-hover-img" loading="lazy"
+                    src="../img/gmap screen.png" />
             </div>
         </div>
     </section>
@@ -5452,135 +5685,135 @@
         <div class="slider-container" id="draggable-slider">
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (0).jpg" />
+                    src="../img/screen/screen (0).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (1).jpg" />
+                    src="../img/screen/screen (1).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (2).jpg" />
+                    src="../img/screen/screen (2).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (3).jpg" />
+                    src="../img/screen/screen (3).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (4).jpg" />
+                    src="../img/screen/screen (4).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (5).jpg" />
+                    src="../img/screen/screen (5).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (6).jpg" />
+                    src="../img/screen/screen (6).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (7).jpg" />
+                    src="../img/screen/screen (7).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (8).jpg" />
+                    src="../img/screen/screen (8).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (9).jpg" />
+                    src="../img/screen/screen (9).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (10).jpg" />
+                    src="../img/screen/screen (10).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (11).jpg" />
+                    src="../img/screen/screen (11).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (12).jpg" />
+                    src="../img/screen/screen (12).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (13).jpg" />
+                    src="../img/screen/screen (13).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (14).jpg" />
+                    src="../img/screen/screen (14).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (15).jpg" />
+                    src="../img/screen/screen (15).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (16).jpg" />
+                    src="../img/screen/screen (16).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (17).jpg" />
+                    src="../img/screen/screen (17).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (18).jpg" />
+                    src="../img/screen/screen (18).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (19).jpg" />
+                    src="../img/screen/screen (19).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (20).jpg" />
+                    src="../img/screen/screen (20).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (21).jpg" />
+                    src="../img/screen/screen (21).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (22).jpg" />
+                    src="../img/screen/screen (22).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (23).jpg" />
+                    src="../img/screen/screen (23).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (24).jpg" />
+                    src="../img/screen/screen (24).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (25).jpg" />
+                    src="../img/screen/screen (25).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (26).jpg" />
+                    src="../img/screen/screen (26).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (27).jpg" />
+                    src="../img/screen/screen (27).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (28).jpg" />
+                    src="../img/screen/screen (28).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (29).jpg" />
+                    src="../img/screen/screen (29).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (30).jpg" />
+                    src="../img/screen/screen (30).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (31).jpg" />
+                    src="../img/screen/screen (31).jpg" />
             </div>
             <div class="screen-card">
                 <img alt="WaFIX HUB customer review" draggable="false" loading="lazy"
-                    src="/img/screen/screen (32).jpg" />
+                    src="../img/screen/screen (32).jpg" />
             </div>
         </div>
     </section>
@@ -5598,16 +5831,16 @@
             <div class="bundle-img mobile-img">
                 <div class="floating-bundle">
                     <div class="floating-grid">
-                        <img alt="WaFIX Keygen" loading="lazy" src="/img/WAFIX KeyGenbox.png" />
-                        <img alt="WaFIX HUB" loading="lazy" src="/img/WAFIX HUB box.png" />
-                        <img alt="WaSender" loading="lazy" src="/img/wasender box.png" />
-                        <img alt="WaCRM" loading="lazy" src="/img/wacrm box.png" />
-                        <img alt="WaDefender" loading="lazy" src="/img/defender box.png" />
-                        <img alt="WaHammer" loading="lazy" src="/img/hammer box.png" />
-                        <img alt="WaFilter" loading="lazy" src="/img/filter box.png" />
-                        <img alt="GMap Extractor" loading="lazy" src="/img/gmap box.png" />
+                        <img alt="WaFIX Keygen" loading="lazy" src="../img/WAFIX KeyGenbox.png" />
+                        <img alt="WaFIX HUB" loading="lazy" src="../img/WAFIX HUB box.png" />
+                        <img alt="WaSender" loading="lazy" src="../img/wasender box.png" />
+                        <img alt="WaCRM" loading="lazy" src="../img/wacrm box.png" />
+                        <img alt="WaDefender" loading="lazy" src="../img/defender box.png" />
+                        <img alt="WaHammer" loading="lazy" src="../img/hammer box.png" />
+                        <img alt="WaFilter" loading="lazy" src="../img/filter box.png" />
+                        <img alt="GMap Extractor" loading="lazy" src="../img/gmap box.png" />
                     </div>
-                    <img alt="30 dollars" class="price-badge-float" loading="lazy" src="/img/30usd.png" />
+                    <img alt="30 dollars" class="price-badge-float" loading="lazy" src="../img/30usd.png" />
                 </div>
             </div>
             <p>
@@ -5656,19 +5889,69 @@
         <div class="bundle-img desktop-img">
             <div class="floating-bundle">
                 <div class="floating-grid">
-                    <img alt="WaFIX Keygen" loading="lazy" src="/img/WAFIX KeyGenbox.png" />
-                    <img alt="WaFIX HUB" loading="lazy" src="/img/WAFIX HUB box.png" />
-                    <img alt="WaSender" loading="lazy" src="/img/wasender box.png" />
-                    <img alt="WaCRM" loading="lazy" src="/img/wacrm box.png" />
-                    <img alt="WaDefender" loading="lazy" src="/img/defender box.png" />
-                    <img alt="WaHammer" loading="lazy" src="/img/hammer box.png" />
-                    <img alt="WaFilter" loading="lazy" src="/img/filter box.png" />
-                    <img alt="GMap Extractor" loading="lazy" src="/img/gmap box.png" />
+                    <img alt="WaFIX Keygen" loading="lazy" src="../img/WAFIX KeyGenbox.png" />
+                    <img alt="WaFIX HUB" loading="lazy" src="../img/WAFIX HUB box.png" />
+                    <img alt="WaSender" loading="lazy" src="../img/wasender box.png" />
+                    <img alt="WaCRM" loading="lazy" src="../img/wacrm box.png" />
+                    <img alt="WaDefender" loading="lazy" src="../img/defender box.png" />
+                    <img alt="WaHammer" loading="lazy" src="../img/hammer box.png" />
+                    <img alt="WaFilter" loading="lazy" src="../img/filter box.png" />
+                    <img alt="GMap Extractor" loading="lazy" src="../img/gmap box.png" />
                 </div>
-                <img alt="30 dollars" class="price-badge-float" loading="lazy" src="/img/30usd.png" />
+                <img alt="30 dollars" class="price-badge-float" loading="lazy" src="../img/30usd.png" />
             </div>
         </div>
     </section>
+
+    <!-- =========================================================
+         DOWNLOAD SECTION
+    ========================================================== -->
+    <section class="download-section reveal" id="download">
+        <div class="download-container">
+            <div class="download-badge">
+                <i class="fa-solid fa-circle-check"></i> Ready for Instant Download &amp; Setup
+            </div>
+            <h2 class="download-title">
+                Download <span>WaFIX HUB</span> Now
+            </h2>
+            <p class="download-subtitle">
+                Restore full stability to your marketing tools (WaSender &amp; WaCRM) in minutes. Fast, official, and
+                100% clean installation.
+            </p>
+
+            <div class="download-card">
+                <div class="download-card-glow"></div>
+                <div class="download-card-content">
+                    <div class="download-box-img">
+                        <img src="../img/WAFIX HUB box.png" alt="WaFIX HUB Software Box" loading="lazy">
+                    </div>
+                    <div class="download-info">
+                        <div class="download-version-tag">
+                            <span class="pulse-dot"></span> WaFIX HUB Setup V2.0 (Stable)
+                        </div>
+                        <div class="download-specs">
+                            <span><i class="fa-brands fa-windows"></i> Windows 10 / 11</span>
+                            <span><i class="fa-solid fa-microchip"></i> 32 / 64-bit</span>
+                            <span><i class="fa-solid fa-shield-halved"></i> 100% Clean &amp; Safe</span>
+                        </div>
+                        <div class="download-actions">
+                            <a href="https://wafixhub.com/Update/WaFIX_Hub_Setup_V2.1.0.exe" download
+                                onclick="if(typeof gtag === 'function'){gtag('event', 'download', {'item_id': 'wafix_hub_home_en'});}"
+                                class="btn-primary" style="font-size:1.05rem;">
+                                <i class="fa-solid fa-cloud-arrow-down"></i>
+                                Direct Download
+                            </a>
+                            <a href="download/" class="btn-secondary-cta">
+                                <i class="fa-solid fa-circle-info"></i>
+                                Details &amp; Mirror Links
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- =========================================================
          PRICING
     ========================================================== -->
@@ -5867,9 +6150,9 @@
 
             </p>
             <div class="payment-methods">
-                <img alt="Binance" loading="lazy" src="/img/binance.png" />
-                <img alt="PayPal" loading="lazy" src="/img/PayPal.png" />
-                <img alt="Visa" loading="lazy" src="/img/visa.png" />
+                <img alt="Binance" loading="lazy" src="../img/binance.png" />
+                <img alt="PayPal" loading="lazy" src="../img/PayPal.png" />
+                <img alt="Visa" loading="lazy" src="../img/visa.png" />
             </div>
         </div>
         <div style="margin:35px 0 20px;">
@@ -5909,25 +6192,48 @@
     <script>
 
         /* =========================================================
-           HEADER
+           SMART HEADER (HIDE ON SCROLL DOWN / SHOW ON SCROLL UP)
         ========================================================== */
 
         const header =
             document.getElementById("main-header");
 
+        const menuToggle =
+            document.getElementById("menu-toggle");
+
+        const navLinks =
+            document.getElementById("nav-links");
+
+        let lastScrollY = window.scrollY;
+        const scrollThreshold = 8;
 
         window.addEventListener(
             "scroll",
             () => {
+                const currentScrollY = window.scrollY;
 
-                if (window.scrollY > 35) {
-
+                // Frosted glass background
+                if (currentScrollY > 35) {
                     header.classList.add("scrolled");
-
                 } else {
-
                     header.classList.remove("scrolled");
                 }
+
+                // If mobile menu is open, don't hide
+                if (navLinks && navLinks.classList.contains("active")) {
+                    header.classList.remove("header-hidden");
+                    lastScrollY = currentScrollY;
+                    return;
+                }
+
+                // Hide on scroll down, show on scroll up
+                if (currentScrollY > lastScrollY + scrollThreshold && currentScrollY > 100) {
+                    header.classList.add("header-hidden");
+                } else if (currentScrollY < lastScrollY - scrollThreshold || currentScrollY <= 40) {
+                    header.classList.remove("header-hidden");
+                }
+
+                lastScrollY = currentScrollY;
             },
             {
                 passive: true
@@ -5939,13 +6245,6 @@
            MOBILE MENU
         ========================================================== */
 
-        const menuToggle =
-            document.getElementById("menu-toggle");
-
-        const navLinks =
-            document.getElementById("nav-links");
-
-
         menuToggle.addEventListener(
             "click",
             () => {
@@ -5956,6 +6255,11 @@
                 menuToggle.setAttribute(
                     "aria-expanded",
                     active ? "true" : "false"
+                );
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    active ? "Close menu" : "Open menu"
                 );
 
 
@@ -5980,6 +6284,11 @@
                         menuToggle.setAttribute(
                             "aria-expanded",
                             "false"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-label",
+                            "Open menu"
                         );
 
                         menuToggle.innerHTML =
